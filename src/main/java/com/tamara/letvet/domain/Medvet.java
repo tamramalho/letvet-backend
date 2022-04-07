@@ -3,16 +3,26 @@ package com.tamara.letvet.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+
+import com.tamara.letvet.domain.enums.Perfil;
+
+@Entity
 public class Medvet extends Pessoa{
+	public static final long serialVersionUID = 1L;
 	
+	@OneToMany(mappedBy = "medvet")
 	private List<Consulta> consultas = new ArrayList<>();
 
 	public Medvet() {
 		super();
+		addPerfil(Perfil.PACIENTEPET);
 	}
 
 	public Medvet(Integer id, String nome, String cpf, String email, String senha) {
 		super(id, nome, cpf, email, senha);
+		addPerfil(Perfil.PACIENTEPET);
 	}
 
 	public List<Consulta> getConsultas() {
