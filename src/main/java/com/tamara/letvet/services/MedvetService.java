@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tamara.letvet.domain.Medvet;
+import com.tamara.letvet.domain.dtos.MedvetDTO;
 import com.tamara.letvet.repositories.MedvetRepository;
 import com.tamara.letvet.services.exceptions.ObjectnotFoundException;
 
@@ -23,5 +24,11 @@ public class MedvetService {
 
 	public List<Medvet> findAll() {
 		return repository.findAll();
+	}
+
+	public Medvet create(MedvetDTO objDTO) {
+		objDTO.setId(null);
+		Medvet newObj= new Medvet(objDTO);
+		return repository.save(newObj);
 	}
 }
