@@ -6,12 +6,14 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tamara.letvet.domain.enums.Perfil;
 
 @Entity
 public class Medvet extends Pessoa{
 	public static final long serialVersionUID = 1L;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "medvet")
 	private List<Consulta> consultas = new ArrayList<>();
 
