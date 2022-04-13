@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tamara.letvet.domain.Medvet;
+import com.tamara.letvet.domain.dtos.MedvetDTO;
 import com.tamara.letvet.services.MedvetService;
 
 @RestController
@@ -18,8 +19,8 @@ public class MedvetResource {
 	private MedvetService service;
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Medvet> findById(@PathVariable Integer id){
+	public ResponseEntity<MedvetDTO> findById(@PathVariable Integer id){
 		Medvet obj = this.service.findById(id);
-		return ResponseEntity.ok().body(obj);
+		return ResponseEntity.ok().body(new MedvetDTO(obj));
 	}
 }
