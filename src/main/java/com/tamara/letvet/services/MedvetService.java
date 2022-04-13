@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.tamara.letvet.domain.Medvet;
 import com.tamara.letvet.repositories.MedvetRepository;
+import com.tamara.letvet.services.exceptions.ObjectnotFoundException;
 
 @Service
 public class MedvetService {
@@ -16,6 +17,6 @@ public class MedvetService {
 	
 	public Medvet findById(Integer id) {
 		Optional<Medvet> obj = repository.findById(id);
-		return obj.orElse(null);
+		return obj.orElseThrow(() -> new ObjectnotFoundException("Objeto não encontrado! Id: " + id));
 	}
 }
