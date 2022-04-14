@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.tamara.letvet.domain.Medvet;
 import com.tamara.letvet.domain.enums.Perfil;
@@ -15,10 +17,19 @@ public class MedvetDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	protected Integer id;
+	
+	@NotNull(message = "Campo NOME é obrigatório!")
 	protected String nome;
+	
+	@NotNull(message = "Campo CPF é obrigatório!")
 	protected String cpf;
+	
+	@NotNull(message = "Campo E-MAIL é obrigatório!")
 	protected String email;
+	
+	@NotNull(message = "Campo SENHA é obrigatório!")
 	protected String senha;
+	
 	protected Set<Integer> perfis = new HashSet<>();
 	
 	@JsonFormat(pattern = "dd/MM/yyyy")
