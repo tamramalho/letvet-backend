@@ -3,6 +3,8 @@ package com.tamara.letvet.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +40,15 @@ public class MedvetService {
 		Medvet newObj= new Medvet(objDTO);
 		return repository.save(newObj);
 	}
-
+	
+	public Medvet update(Integer id, @Valid MedvetDTO objDTO) {
+		objDTO.setId(id);
+		Medvet oldObj = findById(id);
+		validaPorCpfEEmail(objDTO);
+		oldObj = new Medvet(objDTO);
+		return repository.save(oldObj);
+	}
+	
 	private void validaPorCpfEEmail(MedvetDTO objDTO) {
 		Optional<Pessoa> obj = pessoaRepository.findByCpf(objDTO.getCpf());
 		if(obj.isPresent() && obj.get().getId() != objDTO.getId()) {
