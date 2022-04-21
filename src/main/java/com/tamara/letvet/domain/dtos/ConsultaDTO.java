@@ -31,7 +31,7 @@ public class ConsultaDTO implements Serializable{
 	public ConsultaDTO(Consulta obj) {
 		super();
 		this.id = obj.getId();
-		this.dataConsulta = obj.getDataAtendimento();
+		this.dataConsulta = obj.getDataConsulta();
 		this.dataAtendimento = obj.getDataAtendimento();
 		this.prioridade = obj.getPrioridade().getCodigo();
 		this.status = obj.getStatus().getCodigo();

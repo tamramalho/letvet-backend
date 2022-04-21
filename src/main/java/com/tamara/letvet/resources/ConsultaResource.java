@@ -1,5 +1,8 @@
 package com.tamara.letvet.resources;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,5 +25,12 @@ public class ConsultaResource {
 	public ResponseEntity<ConsultaDTO> findById(@PathVariable Integer id){
 		Consulta obj = service.findById(id);
 		return ResponseEntity.ok().body(new ConsultaDTO(obj));
+	}
+	
+	@GetMapping
+	public ResponseEntity<List<ConsultaDTO>> findAll(){
+		List<Consulta> list = service.findAll();
+		List<ConsultaDTO> listDTO = list.stream().map(obj -> new ConsultaDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDTO);
 	}
 }

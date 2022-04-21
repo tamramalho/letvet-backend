@@ -40,12 +40,11 @@ public class DBService {
 		Consulta c1 = new Consulta(null, Prioridade.POUCO_URGENTE, Status.ANDAMENTO, "Consulta Rotineira", "Teste Consulta 1", mv1, pp1);
 		Consulta c2 = new Consulta(null, Prioridade.MUITO_URGENTE, Status.FINALIZADA, "Pronto socorro", "Teste Consulta 2", mv2, pp2);
 		Consulta c3 = new Consulta(null, Prioridade.URGENTE, Status.MARCADA, "Consulta de urgência", "Teste Consulta 3", mv3, pp3);
-		Consulta c4 = new Consulta(null, Prioridade.POUCO_URGENTE, Status.FINALIZADA, "Acompanhamento pós-cirúrgico", "Teste Consulta 4", mv4, pp4);
+		Consulta c4 = new Consulta(null, Prioridade.POUCO_URGENTE, Status.MARCADA, "Acompanhamento pós-cirúrgico", "Teste Consulta 4", mv4, pp4);
 		Consulta c5 = new Consulta(null, Prioridade.URGENTE, Status.ANDAMENTO, "Consulta de urgência", "Teste Consulta 5", mv5, pp5);
+		Consulta c6 = new Consulta(null, Prioridade.MUITO_URGENTE, Status.FINALIZADA, "Pronto socorro", "Teste Consulta 6", mv5, pp1);
 		
-		//medvetRepository.saveAll(Arrays.asList(mv1, mv2, mv3, mv4, mv5));
-		//pacientepetRepository.saveAll(Arrays.asList(pp1, pp2, pp3, pp4, pp5));
 		pessoaRepository.saveAll(Arrays.asList(mv1, mv2, mv3, mv4, mv5, pp1, pp2, pp3, pp4, pp5));
-		consultaRepository.saveAll(Arrays.asList(c1, c2, c3, c4, c5));
+		consultaRepository.saveAll(Arrays.asList(c1, c2, c3, c4, c5, c6));
 	}
 }
