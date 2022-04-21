@@ -3,6 +3,8 @@ package com.tamara.letvet.domain.dtos;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.tamara.letvet.domain.Consulta;
 
@@ -15,12 +17,26 @@ public class ConsultaDTO implements Serializable{
 	private LocalDate dataConsulta = LocalDate.now();
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataAtendimento;
+	
+	@NotNull(message = "O campo PRIORIDADE é obrigatório!")
 	private Integer prioridade;
+	
+	@NotNull(message = "O campo STATUS é obrigatório!")
 	private Integer status;
+	
+	@NotNull(message = "O campo TÍTULO é obrigatório!")
 	private String titulo;
+	
+	@NotNull(message = "O campo OBSERVAÇÕES é obrigatório!")
 	private String observacoes;
+	
+	@NotNull(message = "O campo MED. VET. é obrigatório!")
 	private Integer medvet;
+	
+	@NotNull(message = "O campo PACIENTE PET é obrigatório!")
 	private Integer pacientepet;
+	
+	
 	private String nomeMedvet;
 	private String nomePacientepet;
 	
