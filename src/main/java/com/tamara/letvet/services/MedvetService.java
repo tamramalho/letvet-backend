@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.tamara.letvet.domain.Medvet;
@@ -25,6 +26,9 @@ public class MedvetService {
 	@Autowired
 	private PessoaRepository pessoaRepository;
 	
+	@Autowired
+	private BCryptPasswordEncoder encoder;
+	
 	public Medvet findById(Integer id) {
 		Optional<Medvet> obj = repository.findById(id);
 		return obj.orElseThrow(() -> new ObjectnotFoundException("Objeto não encontrado! Id: " + id));
@@ -36,6 +40,7 @@ public class MedvetService {
 
 	public Medvet create(MedvetDTO objDTO) {
 		objDTO.setId(null);
+		objDTO.setSenha(encoder.encode(objDTO.getSenha()));
 		validaPorCpfEEmail(objDTO);
 		Medvet newObj= new Medvet(objDTO);
 		return repository.save(newObj);

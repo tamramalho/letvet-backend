@@ -3,6 +3,7 @@ package com.tamara.letvet.services;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.tamara.letvet.domain.Consulta;
@@ -23,19 +24,22 @@ public class DBService {
 	@Autowired
 	private ConsultaRepository consultaRepository;
 	
+	@Autowired
+	private BCryptPasswordEncoder encoder;
+	
 	public void instanciaDB() {
-		Medvet mv1 = new Medvet(null, "Letícia Ramalho", "132.624.198-26", "leticia@mail.com", "123");
+		Medvet mv1 = new Medvet(null, "Letícia Ramalho", "132.624.198-26", "leticia@mail.com", encoder.encode("123"));
 		mv1.addPerfil(Perfil.ADMIN);
-		Medvet mv2 = new Medvet(null, "Richard Andrade", "116.814.545-72", "richard@mail.com", "456");
-		Medvet mv3 = new Medvet(null, "Humberto Fialho", "155.111.486-01", "humberto@mail.com", "789");
-		Medvet mv4 = new Medvet(null, "Alice Rodrigues", "396.848.654-49", "alice@mail.com", "147");
-		Medvet mv5 = new Medvet(null, "Diogo Fernandes", "743.782.437-09", "diogo@mail.com", "258");
+		Medvet mv2 = new Medvet(null, "Richard Andrade", "116.814.545-72", "richard@mail.com", encoder.encode("456"));
+		Medvet mv3 = new Medvet(null, "Humberto Fialho", "155.111.486-01", "humberto@mail.com", encoder.encode("789"));
+		Medvet mv4 = new Medvet(null, "Alice Rodrigues", "396.848.654-49", "alice@mail.com", encoder.encode("147"));
+		Medvet mv5 = new Medvet(null, "Diogo Fernandes", "743.782.437-09", "diogo@mail.com", encoder.encode("258"));
 		
-		Pacientepet pp1 = new Pacientepet(null, "Ravena", "898.316.175-25", "arnaldo@mail.com", "369");
-		Pacientepet pp2 = new Pacientepet(null, "Spyke", "643.897.745-49", "maria@mail.com", "159");
-		Pacientepet pp3 = new Pacientepet(null, "Floquinho", "208.440.624-21", "roberto@mail.com", "753");
-		Pacientepet pp4 = new Pacientepet(null, "Apolo", "126.658.426-96", "joana@mail.com", "483");
-		Pacientepet pp5 = new Pacientepet(null, "Maya", "295.480.673-74", "pedro@mail.com", "264");
+		Pacientepet pp1 = new Pacientepet(null, "Ravena", "898.316.175-25", "arnaldo@mail.com", encoder.encode("369"));
+		Pacientepet pp2 = new Pacientepet(null, "Spyke", "643.897.745-49", "maria@mail.com", encoder.encode("159"));
+		Pacientepet pp3 = new Pacientepet(null, "Floquinho", "208.440.624-21", "roberto@mail.com", encoder.encode("753"));
+		Pacientepet pp4 = new Pacientepet(null, "Apolo", "126.658.426-96", "joana@mail.com", encoder.encode("483"));
+		Pacientepet pp5 = new Pacientepet(null, "Maya", "295.480.673-74", "pedro@mail.com", encoder.encode("264"));
 		
 		Consulta c1 = new Consulta(null, Prioridade.POUCO_URGENTE, Status.ANDAMENTO, "Consulta Rotineira", "Teste Consulta 1", mv1, pp1);
 		Consulta c2 = new Consulta(null, Prioridade.MUITO_URGENTE, Status.FINALIZADA, "Pronto socorro", "Teste Consulta 2", mv2, pp2);

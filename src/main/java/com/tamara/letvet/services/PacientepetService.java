@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.tamara.letvet.domain.Pacientepet;
@@ -25,6 +26,9 @@ public class PacientepetService {
 	@Autowired
 	private PessoaRepository pessoaRepository;
 	
+	@Autowired
+	private BCryptPasswordEncoder encoder;
+	
 	public Pacientepet findById(Integer id) {
 		Optional<Pacientepet> obj = repository.findById(id);
 		return obj.orElseThrow(() -> new ObjectnotFoundException("Objeto não encontrado! Id: " + id));
@@ -36,6 +40,7 @@ public class PacientepetService {
 
 	public Pacientepet create(PacientepetDTO objDTO) {
 		objDTO.setId(null);
+		objDTO.setSenha(encoder.encode(objDTO.getSenha()));
 		validaPorCpfEEmail(objDTO);
 		Pacientepet newObj= new Pacientepet(objDTO);
 		return repository.save(newObj);
