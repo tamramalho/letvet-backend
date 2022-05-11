@@ -49,6 +49,11 @@ public class PacientepetService {
 	public Pacientepet update(Integer id, @Valid PacientepetDTO objDTO) {
 		objDTO.setId(id);
 		Pacientepet oldObj = findById(id);
+		
+		if(!objDTO.getSenha().equals(oldObj.getSenha())) {
+			objDTO.setSenha(encoder.encode(objDTO.getSenha()));
+		}
+		
 		validaPorCpfEEmail(objDTO);
 		oldObj = new Pacientepet(objDTO);
 		return repository.save(oldObj);

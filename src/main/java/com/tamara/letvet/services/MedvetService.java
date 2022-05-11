@@ -49,6 +49,11 @@ public class MedvetService {
 	public Medvet update(Integer id, @Valid MedvetDTO objDTO) {
 		objDTO.setId(id);
 		Medvet oldObj = findById(id);
+		
+		if(!objDTO.getSenha().equals(oldObj.getSenha())) {
+			objDTO.setSenha(encoder.encode(objDTO.getSenha()));
+		}
+		
 		validaPorCpfEEmail(objDTO);
 		oldObj = new Medvet(objDTO);
 		return repository.save(oldObj);

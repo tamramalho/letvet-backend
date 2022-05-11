@@ -22,11 +22,13 @@ public class Medvet extends Pessoa{
 	public Medvet() {
 		super();
 		addPerfil(Perfil.PACIENTEPET);
+		addPerfil(Perfil.MEDVET);
 	}
 
 	public Medvet(Integer id, String nome, String cpf, String email, String senha) {
 		super(id, nome, cpf, email, senha);
 		addPerfil(Perfil.PACIENTEPET);
+		addPerfil(Perfil.MEDVET);
 	}
 	
 	public Medvet(MedvetDTO obj) {

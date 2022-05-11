@@ -38,6 +38,7 @@ public class MedvetDTO implements Serializable{
 	public MedvetDTO() {
 		super();
 		addPerfil(Perfil.PACIENTEPET);
+		addPerfil(Perfil.MEDVET);
 	}
 
 	public MedvetDTO(Medvet obj) {
@@ -50,6 +51,7 @@ public class MedvetDTO implements Serializable{
 		this.perfis = obj.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
 		this.dataCriacao = obj.getDataCriacao();
 		addPerfil(Perfil.PACIENTEPET);
+		addPerfil(Perfil.MEDVET);
 	}
 
 	public Integer getId() {

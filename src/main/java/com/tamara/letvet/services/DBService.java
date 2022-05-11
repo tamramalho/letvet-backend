@@ -31,6 +31,7 @@ public class DBService {
 		Medvet mv1 = new Medvet(null, "Letícia Ramalho", "132.624.198-26", "leticia@mail.com", encoder.encode("123"));
 		mv1.addPerfil(Perfil.ADMIN);
 		Medvet mv2 = new Medvet(null, "Richard Andrade", "116.814.545-72", "richard@mail.com", encoder.encode("456"));
+		mv2.addPerfil(Perfil.ADMIN);
 		Medvet mv3 = new Medvet(null, "Humberto Fialho", "155.111.486-01", "humberto@mail.com", encoder.encode("789"));
 		Medvet mv4 = new Medvet(null, "Alice Rodrigues", "396.848.654-49", "alice@mail.com", encoder.encode("147"));
 		Medvet mv5 = new Medvet(null, "Diogo Fernandes", "743.782.437-09", "diogo@mail.com", encoder.encode("258"));
