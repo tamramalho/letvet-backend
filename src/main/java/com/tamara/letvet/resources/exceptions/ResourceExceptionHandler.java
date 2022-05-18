@@ -9,6 +9,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.tamara.letvet.services.exceptions.ConstraintViolationException;
 import com.tamara.letvet.services.exceptions.DataIntegrityViolationException;
 import com.tamara.letvet.services.exceptions.ObjectnotFoundException;
 
@@ -22,6 +23,15 @@ public class ResourceExceptionHandler {
 				"Object Not Found", ex.getMessage(), request.getRequestURI());
 		
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+	}
+	
+	@ExceptionHandler(ConstraintViolationException.class)
+	public ResponseEntity<StandardError> constraintViolationException(ConstraintViolationException ex, HttpServletRequest request){
+		
+		StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(), 
+				"Validation Error", "Número do registro de contribuinte individual brasileiro (CPF) inválido!", request.getRequestURI());
+		
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
 	}
 	
 	@ExceptionHandler(DataIntegrityViolationException.class)
